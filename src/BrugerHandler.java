@@ -18,9 +18,11 @@ public class BrugerHandler {
         boolean restance;
         String swinType;
         int swimTid;
+        String træner = "Thomas";
 
         while (again) {
             System.out.println("Hvilken type svømmer 1/2");
+            System.out.println("1 for motionist, 2 for konkurrencemedlem");
             brugerType = scanner.nextInt();
 
 
@@ -39,7 +41,7 @@ public class BrugerHandler {
                 Motionist motionistListe = new Motionist(age, navn, aktiv, restance);
                 motionister.add(motionistListe);
             } else if (brugerType == 2) {
-                KonkurrenceMedlem konkurrenceMedlemListe = new KonkurrenceMedlem(age, navn, aktiv, restance, "", 0);
+                KonkurrenceMedlem konkurrenceMedlemListe = new KonkurrenceMedlem(age, navn, aktiv, restance, "", 0,  "Thomas");
                 konkurrencemedlemmer.add(konkurrenceMedlemListe);
             } else {
                 System.out.println("Forkert type");
@@ -94,4 +96,8 @@ public class BrugerHandler {
                 break;
         }
     */
+    public void opdaterBruger()
+    {
+
+    }
 }

@@ -29,7 +29,7 @@ public class FilHandtering {
             BufferedWriter bw2 = new BufferedWriter(fw2);
 
             for (KonkurrenceMedlem k : konkurrencemedlemmer) {
-                bw2.write(k.getAge() +"\t" +k.getNavn() +"\t" +k.isAktiv() + "\t" +k.isRestance() +"\t" +k.getSwimType()+"\t" +k.getSwimTid() +"\n");
+                bw2.write(k.getAge() +"\t" +k.getNavn() +"\t" +k.isAktiv() + "\t" +k.isRestance() +"\t" +k.getSwimType()+"\t" +k.getSwimTid()+ "\t" +k.getTræner() +"\n");
             }
 
             bw2.close();
@@ -59,6 +59,7 @@ public class FilHandtering {
         boolean restance;
         String swimType;
         int swimTid;
+        String træner;
 
         try {
             Scanner scanner1 = new Scanner(new File(mFileLoc));
@@ -91,8 +92,9 @@ public class FilHandtering {
                 restance = Boolean.parseBoolean(insertTo[3].toString());
                 swimType = insertTo[4].toString();
                 swimTid = Integer.parseInt(insertTo[5].toString());
+                træner = insertTo[6].toString();
 
-                KonkurrenceMedlem konkurrenceListe = new KonkurrenceMedlem(age, navn, aktiv, restance, swimType, swimTid);
+                KonkurrenceMedlem konkurrenceListe = new KonkurrenceMedlem(age, navn, aktiv, restance, swimType, swimTid, træner);
                 konkurrencemedlemmer.add(konkurrenceListe);
             }
 
