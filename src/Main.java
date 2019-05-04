@@ -42,7 +42,7 @@ public class Main {
         List<Motionist> motionister = new ArrayList();
         List<KonkurrenceMedlem> konkurrencemedlemmer = new ArrayList<>();
 
-        bruger.opretMotionist(motionister, konkurrencemedlemmer);
+        // bruger.opretMotionist(motionister, konkurrencemedlemmer);
 
 
         /*
@@ -58,7 +58,13 @@ public class Main {
         */
 
         fil.læsFil(motionister, konkurrencemedlemmer);
+        bruger.opretBruger(motionister, konkurrencemedlemmer);
+        bruger.opdaterBruger(konkurrencemedlemmer);
         fil.skrivFil(motionister, konkurrencemedlemmer);
+
+
+        // bruger.sletBruger(motionister, konkurrencemedlemmer);
+        //fil.skrivFil(motionister, konkurrencemedlemmer);
 
         // Loop for alle motionister - Unsorted
         System.out.println("Motionister:");
@@ -67,10 +73,10 @@ public class Main {
         }
 
         System.out.println("- - -");
-        System.out.println("KonkurrenceMedlemmer");
-        for (KonkurrenceMedlem k : konkurrencemedlemmer) {
-            System.out.println(k.getId() +" " +k.getNavn() +" " +k.getAge() +" " +pris.getPris(k.isAktiv(), k.getAge()) +" DKK " +k.getSwimType()+" "+k.getSwimTid() +" "+ k.getTræner());
-        }
+
+        bruger.printKonkurrenceListe(konkurrencemedlemmer);
+
+
         // Sort
         // Collections.sort(motionister);
 

@@ -4,6 +4,14 @@ import java.util.Scanner;
 
 public class FilHandtering {
 
+    int age;
+    String navn;
+    boolean aktiv;
+    boolean restance;
+    String swimType;
+    int swimTid;
+    String træner;
+
     // Tager imod 2 lister og skriver dem til "Output.txt"
     // Skal helst kunne gøre det hele i en fil
     public void skrivFil(List<Motionist> motionister, List<KonkurrenceMedlem> konkurrencemedlemmer)
@@ -17,7 +25,6 @@ public class FilHandtering {
 
             // Skriver alle objekter fra motionister-listen til filen "Output.txt"
             for (Motionist m : motionister) {
-                // bw.write("Jens\n");
                 bw1.write(m.getAge() +"\t" +m.getNavn() +"\t" +m.isAktiv() + "\t" +m.isRestance() +"\n");
             }
 
@@ -33,15 +40,6 @@ public class FilHandtering {
             }
 
             bw2.close();
-            // Vi prøver at få den til at splitte op på "###", så vi kan gøre det hele i en fil
-            /*
-            bw.write("###\n");
-            for (KonkurrenceMedlem k : konkurrencemedlemmer) {
-                // bw.write("Jens\n");
-                bw.write(k.getAge() +"\t" +k.getNavn()  +"\t" +k.isAktiv() + "\t" +k.isRestance() +"\t" +k.getSwimType() + "\t" + k.getSwimTid()+"\n");
-            }
-            */
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,13 +51,6 @@ public class FilHandtering {
         String mFileLoc = "Motionist.txt";
         String kFileLoc = "KonkurrenceMedlem.txt";
 
-        int age;
-        String navn;
-        boolean aktiv;
-        boolean restance;
-        String swimType;
-        int swimTid;
-        String træner;
 
         try {
             Scanner scanner1 = new Scanner(new File(mFileLoc));
@@ -71,10 +62,7 @@ public class FilHandtering {
                 Object[] insertTo = scanner1.nextLine().split("\t");
 
                 // Bruger vores midlertidige objekt til at positionere vores data samt type
-                age = Integer.parseInt(insertTo[0].toString());
-                navn = insertTo[1].toString();
-                aktiv = Boolean.parseBoolean(insertTo[2].toString());
-                restance = Boolean.parseBoolean(insertTo[3].toString());
+                parseInsertTo(insertTo);
 
                 // En ny liste der bruges til at skrive ind i vores Motionist-liste
                 Motionist motionistListe = new Motionist(age, navn, aktiv, restance);
@@ -86,10 +74,7 @@ public class FilHandtering {
                 Object[] insertTo = scanner2.nextLine().split("\t");
 
                 // Bruger vores midlertidige objekt til at positionere vores data samt type
-                age = Integer.parseInt(insertTo[0].toString());
-                navn = insertTo[1].toString();
-                aktiv = Boolean.parseBoolean(insertTo[2].toString());
-                restance = Boolean.parseBoolean(insertTo[3].toString());
+                parseInsertTo(insertTo);
                 swimType = insertTo[4].toString();
                 swimTid = Integer.parseInt(insertTo[5].toString());
                 træner = insertTo[6].toString();
@@ -105,7 +90,12 @@ public class FilHandtering {
 
     }
 
-
+    public void parseInsertTo(Object[] insertTo) {
+        age = Integer.parseInt(insertTo[0].toString());
+        navn = insertTo[1].toString();
+        aktiv = Boolean.parseBoolean(insertTo[2].toString());
+        restance = Boolean.parseBoolean(insertTo[3].toString());
+    }
 }
 
 // To-do:

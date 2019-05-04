@@ -25,10 +25,11 @@ public class KonkurrenceMedlem extends Motionist {
     public void setSwimTid(int swimTid) {
         this.swimTid = swimTid;
     }
+
     public String getTræner(){
         return træner;
     }
-    public String setTræner(){
-        return træner;
+    public void setTræner(String træner){
+        this.træner = træner;
     }
 }

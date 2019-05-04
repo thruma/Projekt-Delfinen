@@ -6,7 +6,7 @@ public class BrugerHandler {
     // Motionist m1 = new Motionist(80, "Lotte",false, false);
     Scanner scanner = new Scanner(System.in);
 
-    public void opretMotionist(List<Motionist> motionister, List<KonkurrenceMedlem> konkurrencemedlemmer) {
+    public void opretBruger(List<Motionist> motionister, List<KonkurrenceMedlem> konkurrencemedlemmer) {
         System.out.println("Du er ved at lave brugere!");
 
         int brugerType;
@@ -74,30 +74,145 @@ public class BrugerHandler {
         return returnValue;
     }
 
-    /*
-    public int brugerOpretMenu() {
-        Scanner scanner = new Scanner(System.in);
-        int valg = scanner.nextInt();
-
-
-        switch (valg) {
-            case 1:
-                // Motionist
-
-                break;
-
-            case 2:
-                // Konkurrence
-
-                break;
-
-            default:
-                System.out.println("Du har dummet dig, idiot!");
-                break;
-        }
-    */
-    public void opdaterBruger()
+    public void opdaterBruger(List<KonkurrenceMedlem>konkurrencemedlemmer)
     {
+        int idValg;
+        int valg;
 
+        boolean again = true;
+
+        printKonkurrenceListe(konkurrencemedlemmer);
+        System.out.println("Her er en list over konkurrence medlemmer skriv det id du gerne vil rette");
+
+        idValg = scanner.nextInt();
+        while(again) {
+            for (KonkurrenceMedlem k : konkurrencemedlemmer) {
+                if (idValg == k.getId()) {
+                    System.out.printf("%-12s", k.getNavn());
+                    System.out.printf("%-15s", k.getSwimType());
+                    System.out.printf("%-8s", k.getSwimTid());
+                    System.out.println(k.getTræner());
+
+                    System.out.println("Hvad vil du ændre");
+                    System.out.println("1 Disciplin\n2 Tid\n3 Træner");
+
+                    valg = scanner.nextInt();
+
+                    switch (valg) {
+
+
+                        case 1:
+                            //Disciplin
+                            System.out.print("skriv ny disciplen: ");
+                            k.setSwimType(scanner.next());
+                            break;
+
+                        case 2:
+                            //Tid
+                            System.out.print("indsæt ny: ");
+                            k.setSwimTid(scanner.nextInt());
+                            break;
+
+                        case 3:
+                            //Træner
+                            System.out.print("skriv træner: ");
+                            k.setTræner(scanner.next());
+                            break;
+
+                        default:
+                            System.out.println("Forkert valg");
+                    }
+                    System.out.println("vil du fortsætte?");
+                    again = jaNej();
+                }
+            }
+        }
+    }
+
+    public void sletBruger(List<Motionist> motionister, List<KonkurrenceMedlem> konkurrencemedlemmer) {
+
+        int idValg;
+        int valg;
+        int count = 0;
+
+        boolean again = true;
+        boolean flag = false;
+        boolean godkendSlet;
+
+        printLister(motionister, konkurrencemedlemmer);
+        System.out.println("Her er en list over medlemmer skriv det id du gerne vil slette");
+
+        idValg = scanner.nextInt();
+
+        for (Motionist m : motionister) {
+            if (idValg == m.getId()) {
+                flag = true;
+                // gøt noget
+                System.out.println(m.getNavn());
+                System.out.println("Vil du slette? j/n");
+                godkendSlet = jaNej();
+
+                if (godkendSlet) {
+                    motionister.remove(m); // Brug for hjælp - Lektiecafé
+                }
+            }
+        }
+        while (!flag || count < 1) {
+            for (KonkurrenceMedlem k : konkurrencemedlemmer) {
+                if (idValg == k.getId()) {
+                    flag = true;
+                    // gør noget
+                    // magen til ovenfor
+                }
+            }
+            if (flag) {
+                // success
+            } else {
+                System.out.println("Bruger ikke fundet!");
+            }
+            count++;
+        }
+    }
+
+    public void printKonkurrenceListe(List<KonkurrenceMedlem> konkurrencemedlemmer) {
+        System.out.println("KonkurrenceMedlemmer");
+        System.out.printf("%-4s", "ID");
+        System.out.printf("%-12s", "Navn");
+        System.out.printf("%-8s", "Alder");
+        System.out.printf("%-15s", "Disciplin");
+        System.out.printf("%-8s", "Tid");
+        System.out.print("Træner");
+        System.out.println();
+
+        for (KonkurrenceMedlem k : konkurrencemedlemmer) {
+            System.out.printf("%-4s", k.getId());
+            System.out.printf("%-12s", k.getNavn());
+            System.out.printf("%-8s", k.getAge());
+            System.out.printf("%-15s", k.getSwimType());
+            System.out.printf("%-8s", k.getSwimTid());
+            System.out.print(k.getTræner());
+            System.out.println();
+        }
+    }
+    public void printLister(List<Motionist> motionister, List<KonkurrenceMedlem> konkurrencemedlemmer) {
+        System.out.println("KonkurrenceMedlemmer");
+        System.out.printf("%-4s", "ID");
+        System.out.printf("%-12s", "Navn");
+        System.out.println();
+
+        for (Motionist m : motionister) {
+            System.out.printf("%-4s", m.getId());
+            System.out.printf("%-12s", m.getNavn());
+            System.out.println();
+        }
+
+        for (KonkurrenceMedlem k : konkurrencemedlemmer) {
+            System.out.printf("%-4s", k.getId());
+            System.out.printf("%-12s", k.getNavn());
+            System.out.println();
+        }
     }
 }
+
+
+

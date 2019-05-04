@@ -1,4 +1,5 @@
+435	Bent	true	false	Freestyle	0	Thomas
 3	jens	true	true		0	Thomas
-
 45	ghayagsh	false	false		0	Thomas
 3	f	true	true		0	Thomas
+21	Børge	true	false		0	Thomas
