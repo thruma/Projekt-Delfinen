@@ -1,2 +1,4 @@
-325	f	true	true
-1	f	false	true
+80	Lotte	false	false
+60	Søren	true	true
+44	Else	true	false
+50	Henrik	false	true

@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.List;
 import java.util.Scanner;
 
@@ -96,8 +97,80 @@ public class BrugerHandler {
                 break;
         }
     */
-    public void opdaterBruger()
+    public void printKonkurrenceListe(List<KonkurrenceMedlem> konkurrencemedlemmer) {
+        System.out.println("KonkurrenceMedlemmer");
+        System.out.printf("%-4s", "ID");
+        System.out.printf("%-12s", "Navn"); //"%-15", k.getNavn() +"%-8s", k.getAge() +"%-15s", k.getSwimType()+"%-10", k.getSwimTid() +"%-10", k.getTræner());
+        System.out.printf("%-8s", "Alder");
+        System.out.printf("%-15s", "Disciplin");
+        System.out.printf("%-8s", "Tid");
+        System.out.print("Træner");
+        System.out.println();
+
+        for (KonkurrenceMedlem k : konkurrencemedlemmer) {
+            System.out.printf("%-4s", k.getId());
+            System.out.printf("%-12s", k.getNavn()); //"%-15", k.getNavn() +"%-8s", k.getAge() +"%-15s", k.getSwimType()+"%-10", k.getSwimTid() +"%-10", k.getTræner());
+            System.out.printf("%-8s", k.getAge());
+            System.out.printf("%-15s", k.getSwimType());
+            System.out.printf("%-8s", k.getSwimTid());
+            System.out.print(k.getTræner());
+            System.out.println();
+        }
+    }
+    public void opdaterBruger(List<KonkurrenceMedlem>konkurrencemedlemmer)
     {
+        int idValg;
+        int valg;
+
+        boolean again = true;
+
+        printKonkurrenceListe(konkurrencemedlemmer);
+        System.out.println("Her er en list over konkurrence medlemmer skriv det id du gerne vil rette");
+
+        idValg = scanner.nextInt();
+        while(again) {
+            for (KonkurrenceMedlem k : konkurrencemedlemmer) {
+                if (idValg == k.getId()) {
+                    System.out.printf("%-12s", k.getNavn());
+                    System.out.printf("%-15s", k.getSwimType());
+                    System.out.printf("%-8s", k.getSwimTid());
+                    System.out.println(k.getTræner());
+
+                    System.out.println("Hvad vil du ændre");
+                    System.out.println("1 Disciplin\n2 Tid\n3 Træner");
+
+                    valg = scanner.nextInt();
+
+                    switch (valg) {
+
+
+                        case 1:
+                            //Disciplin
+                            System.out.print("skriv ny disciplen: ");
+                            k.setSwimType(scanner.next());
+                            break;
+
+                        case 2:
+                            //Tid
+                            System.out.print("indsæt ny: ");
+                            k.setSwimTid(scanner.nextInt());
+                            break;
+
+                        case 3:
+                            //Træner
+                            System.out.print("skriv træner: ");
+                            k.setTræner(scanner.next());
+                            break;
+
+                        default:
+                            System.out.println("Forkert valg");
+                    }
+                    System.out.println("vil du fortsætte?");
+                    again = jaNej();
+                }
+            }
+        }
+
 
     }
 }

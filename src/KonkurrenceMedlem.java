@@ -28,7 +28,7 @@ public class KonkurrenceMedlem extends Motionist {
     public String getTræner(){
         return træner;
     }
-    public String setTræner(){
-        return træner;
+    public void setTræner(String træner){
+        this.træner = træner;
     }
 }

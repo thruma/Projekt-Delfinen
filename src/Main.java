@@ -26,39 +26,43 @@ public class Main {
         // Stævne s1 = new Stævne("EM i butterfly", "Lygten 37", 123);
 
         // Bruger oprettelse
-        /*
-        KonkurrenceMedlem k1 = new KonkurrenceMedlem(21, "Flemming", true, true, "Butterfly", 100);
-        KonkurrenceMedlem k2 = new KonkurrenceMedlem(15, "Lars", true, false, "Freestyle", 125);
-        KonkurrenceMedlem k3 = new KonkurrenceMedlem(7, "Ib", true, false, "Freestyle",143);
+/*
+        KonkurrenceMedlem k1 = new KonkurrenceMedlem(21, "Flemming", true, true, "Butterfly", 100,"thomas");
+        KonkurrenceMedlem k2 = new KonkurrenceMedlem(15, "Lars", true, false, "Freestyle", 125,"jens");
+        KonkurrenceMedlem k3 = new KonkurrenceMedlem(7, "Ib", true, false, "Freestyle",143,"poul");
 
         Motionist m1 = new Motionist(80, "Lotte",false, false);
         Motionist m2 = new Motionist(60, "Søren", true, true);
         Motionist m3 = new Motionist(44, "Else", true, false);
         Motionist m4 = new Motionist(50, "Henrik", false, true);
-        */
+*/
 
 
         // Opret og tilføj til List (array)
         List<Motionist> motionister = new ArrayList();
         List<KonkurrenceMedlem> konkurrencemedlemmer = new ArrayList<>();
 
-        bruger.opretMotionist(motionister, konkurrencemedlemmer);
 
+        fil.læsFil(motionister, konkurrencemedlemmer);
+        //fil.skrivFil(motionister, konkurrencemedlemmer);
+        bruger.opdaterBruger(konkurrencemedlemmer);
+        //bruger.opretMotionist(motionister, konkurrencemedlemmer);
 
-        /*
+/*
+
         motionister.add(m1);
         motionister.add(m2);
         motionister.add(m3);
         motionister.add(m4);
-        */
-        /*
+
+
         konkurrencemedlemmer.add(k1);
         konkurrencemedlemmer.add(k2);
         konkurrencemedlemmer.add(k3);
-        */
-
-        fil.læsFil(motionister, konkurrencemedlemmer);
+*/
         fil.skrivFil(motionister, konkurrencemedlemmer);
+        //fil.læsFil(motionister, konkurrencemedlemmer);
+        //fil.skrivFil(motionister, konkurrencemedlemmer);
 
         // Loop for alle motionister - Unsorted
         System.out.println("Motionister:");
